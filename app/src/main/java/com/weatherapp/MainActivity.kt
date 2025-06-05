@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -16,6 +17,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
+import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -51,7 +53,9 @@ fun HomePage(modifier: Modifier = Modifier) {
     val activity = LocalContext.current as? Activity
 
     Column(
-        modifier = modifier.padding(24.dp).fillMaxSize(),
+        modifier = modifier
+            .padding(24.dp)
+            .fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
 
@@ -77,7 +81,7 @@ fun HomePage(modifier: Modifier = Modifier) {
 
             Spacer(modifier = modifier.size(24.dp))
 
-            Button(onClick = {
+            ElevatedButton(onClick = {
                 activity?.finish()
             }) { Text("Sair") }
         }

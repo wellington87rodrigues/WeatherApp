@@ -2,8 +2,6 @@ package com.weatherapp
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Intent
-import android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -29,20 +27,19 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.weatherapp.ui.theme.WeatherAppTheme
 
-class LoginActivity : ComponentActivity() {
+class RegisterActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             WeatherAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    LoginPage(
+                    RegisterPage(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -54,10 +51,12 @@ class LoginActivity : ComponentActivity() {
 @SuppressLint("ContextCastToActivity")
 @Preview(showBackground = true)
 @Composable
-fun LoginPage(modifier: Modifier = Modifier) {
+fun RegisterPage(modifier: Modifier = Modifier) {
 
+    var nome by rememberSaveable { mutableStateOf("") }
     var email by rememberSaveable { mutableStateOf("") }
-    var password by rememberSaveable { mutableStateOf("") }
+    var senha by rememberSaveable { mutableStateOf("") }
+    var repitSenha by rememberSaveable { mutableStateOf("") }
     val activity = LocalContext.current as? Activity
 
     Column(
@@ -66,11 +65,19 @@ fun LoginPage(modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally,
         ) {
         Text(
-            text = "Bem-vindo/a!",
+            text = "Registre-se!",
             fontSize = 24.sp
         )
-
         //Spacer(modifier = modifier.size(24.dp))
+
+        OutlinedTextField(
+            value = nome,
+            label = { Text(text = "Digite seu nome") },
+            modifier = modifier.fillMaxWidth(fraction = 0.9f),
+            onValueChange = { nome = it }
+        )
+
+        //Spacer(modifier = modifier.size(10.dp))
 
         OutlinedTextField(
             value = email,
@@ -79,42 +86,44 @@ fun LoginPage(modifier: Modifier = Modifier) {
             onValueChange = { email = it }
         )
 
-        //Spacer(modifier = modifier.size(16.dp))
+        //Spacer(modifier = modifier.size(10.dp))
 
         OutlinedTextField(
-            value = password,
+            value = senha,
             label = { Text(text = "Digite sua senha") },
             modifier = modifier.fillMaxWidth(fraction = 0.9f),
-            onValueChange = { password = it },
-            visualTransformation = PasswordVisualTransformation()
+            onValueChange = { senha = it }
         )
 
-        //Spacer(modifier = modifier.size(24.dp))
+
+        //Spacer(modifier = modifier.size(10.dp))
+
+        OutlinedTextField(
+            value = repitSenha,
+            label = { Text(text = "Digite sua senha novamente") },
+            modifier = modifier.fillMaxWidth(fraction = 0.9f),
+            onValueChange = { repitSenha = it }
+        )
 
         Row(modifier = modifier) {
 
             Button(
+                enabled = nome.isNotEmpty() && email.isNotEmpty() && senha.isNotEmpty() && repitSenha.isNotEmpty() && senha.equals(repitSenha),
                 onClick = {
-                    Toast.makeText(activity, "Login OK!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(activity, "Registro OK!", Toast.LENGTH_LONG).show()
+                    activity?.finish()
                 }
-            ) { Text("Login") }
+            ) { Text("Registrar") }
 
-            //Spacer(modifier = modifier.size(24.dp))
+            //Spacer(modifier = modifier.size(10.dp))
 
             Button(
-                onClick = { email = ""; password = ""},
-                enabled = email.isNotEmpty() && password.isNotEmpty()
+                onClick = {
+                    nome = ""; email = ""; senha = ""; repitSenha = ""
+                          },
+                enabled = nome.isNotEmpty() && email.isNotEmpty() && senha.isNotEmpty() && repitSenha.isNotEmpty()
             ) { Text("Limpar") }
         }
-
-        //Spacer(modifier = modifier.size(16.dp))
-
-        Button(
-            onClick = {
-                activity?.startActivity(
-                    Intent(activity, RegisterActivity::class.java).setFlags(FLAG_ACTIVITY_SINGLE_TOP)
-                )
-            }
-        ) {  Text("Registrar") }
     }
 }
+
