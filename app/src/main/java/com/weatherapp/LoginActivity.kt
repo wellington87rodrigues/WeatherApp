@@ -2,6 +2,8 @@ package com.weatherapp
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -53,9 +55,11 @@ class LoginActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun LoginPage(modifier: Modifier = Modifier) {
+
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
     val activity = LocalContext.current as? Activity
+
     Column(
         modifier = modifier.padding(16.dp).fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -66,7 +70,7 @@ fun LoginPage(modifier: Modifier = Modifier) {
             text = "Bem-vindo/a!",
             fontSize = 24.sp
         )
-        Spacer(modifier = modifier.size(24.dp))
+        //Spacer(modifier = modifier.size(16.dp))
         OutlinedTextField(
             value = email,
             label = { Text(text = "Digite seu e-mail") },
@@ -80,21 +84,29 @@ fun LoginPage(modifier: Modifier = Modifier) {
             onValueChange = { password = it },
             visualTransformation = PasswordVisualTransformation()
         )
+        //Spacer(modifier = modifier.size(16.dp))
         Row(modifier = modifier) {
+
             Button(
                 onClick = {
                     Toast.makeText(activity, "Login OK!", Toast.LENGTH_LONG).show()
                 }
-            ) {
-                Text("Login")
-            }
+            ) { Text("Login") }
+
             Spacer(modifier = modifier.size(24.dp))
+
             Button(
                 onClick = { email = ""; password = ""},
-                        enabled = email.isNotEmpty() && password.isNotEmpty()
-            ) {
-                Text("Limpar")
-            }
+                enabled = email.isNotEmpty() && password.isNotEmpty()
+            ) { Text("Limpar") }
         }
+
+        Button(
+            onClick = {
+                activity?.startActivity(
+                    Intent(activity, MainActivity::class.java).setFlags(FLAG_ACTIVITY_SINGLE_TOP)
+                )
+            }
+        ) {  Text("Voltar para Home") }
     }
 }
