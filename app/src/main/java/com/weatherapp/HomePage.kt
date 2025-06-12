@@ -1,5 +1,7 @@
 package com.weatherapp
 
+import android.annotation.SuppressLint
+import android.app.Activity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,13 +11,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import com.weatherapp.ui.model.MainViewModel
 
+@SuppressLint("ContextCastToActivity")
 @Composable
-fun HomePage() {
+fun HomePage(
+    modifier: Modifier = Modifier,
+    viewModel: MainViewModel
+) {
+
+    val cityList = viewModel.cities
 
     Column(
         modifier = Modifier.fillMaxSize()
@@ -32,4 +41,3 @@ fun HomePage() {
         )
     }
 }
-
