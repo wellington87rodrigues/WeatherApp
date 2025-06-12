@@ -1,6 +1,5 @@
 package com.weatherapp
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,17 +14,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 
-@SuppressLint("ContextCastToActivity")
-@Preview(showBackground = true)
 @Composable
-fun HomePage(modifier: Modifier) {
+fun HomePage() {
 
     Column(
         modifier = Modifier.fillMaxSize()
             .background(Color.Blue)
             .wrapContentSize(Alignment.Center)
     ) {
-
         Text(
             text = "Home",
             fontWeight = FontWeight.Bold,

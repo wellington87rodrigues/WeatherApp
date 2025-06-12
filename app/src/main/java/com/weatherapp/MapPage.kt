@@ -16,16 +16,16 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun MapPage(){
     Column(
-        modifier = Modifier.Companion.fillMaxSize()
-            .background(Color.Companion.Magenta)
-            .wrapContentSize(Alignment.Companion.Center)
+        modifier = Modifier.fillMaxSize()
+            .background(Color.Gray)
+            .wrapContentSize(Alignment.Center)
     ) {
         Text(
-            text = "Favoritas",
-            fontWeight = FontWeight.Companion.Bold,
-            color = Color.Companion.White,
-            modifier = Modifier.Companion.align(Alignment.Companion.CenterHorizontally),
-            textAlign = TextAlign.Companion.Center,
+            text = "Mapa",
+            fontWeight = FontWeight.Bold,
+            color = Color.White,
+            modifier = Modifier.align(Alignment.CenterHorizontally),
+            textAlign = TextAlign.Center,
             fontSize = 20.sp
         )
     }

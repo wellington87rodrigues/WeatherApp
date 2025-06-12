@@ -21,9 +21,9 @@ fun ListPage(){
             .wrapContentSize(Alignment.Center)
     ) {
         Text(
-            text = "Mapa",
+            text = "Favoritas",
             fontWeight = FontWeight.Bold,
-            color = Color.Gray,
+            color = Color.White,
             modifier = Modifier.align(Alignment.CenterHorizontally),
             textAlign = TextAlign.Center,
             fontSize = 20.sp
