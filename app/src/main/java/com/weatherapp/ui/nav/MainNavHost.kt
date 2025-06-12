@@ -16,3 +16,4 @@ fun MainNavHost(navController: NavHostController) {
         composable<Route.Map> { MapPage() }
     }
 }
+
