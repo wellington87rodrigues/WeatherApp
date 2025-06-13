@@ -53,7 +53,7 @@ fun ListPage(
         items(cityList, key = {it.name}) { city ->
             CityItem(city = city, onClose = {
                 viewModel.remove(city)
-                Toast.makeText(activity, "Deseja excluir o local?", Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, "Cidade Excluida", Toast.LENGTH_LONG).show()
 
             }, onClick = {
                 Toast.makeText(activity, "Local Selecionado", Toast.LENGTH_LONG).show()
