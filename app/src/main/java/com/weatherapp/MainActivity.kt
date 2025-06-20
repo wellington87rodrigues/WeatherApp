@@ -1,7 +1,6 @@
 package com.weatherapp
 
 import android.Manifest
-import android.app.Instrumentation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult

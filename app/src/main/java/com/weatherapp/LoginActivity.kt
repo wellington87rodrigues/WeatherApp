@@ -95,6 +95,9 @@ fun LoginPage(modifier: Modifier = Modifier) {
 
             Button(
                 onClick = {
+                    activity?.startActivity(
+                        Intent(activity, MainActivity::class.java).setFlags(FLAG_ACTIVITY_SINGLE_TOP)
+                    )
                     Toast.makeText(activity, "Login OK!", Toast.LENGTH_LONG).show()
                 }
             ) { Text("Login") }
