@@ -6,6 +6,8 @@ import android.content.pm.PackageManager
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.content.ContextCompat
@@ -34,12 +36,12 @@ fun MapPage(
 
     val context = LocalContext.current
     val hasLocationPermission by remember {
-        mutableSetOf(
-            ContextCompat.checkSelfPermission(context,
-                Manifest.permission.ACCESS_FINE_LOCATION) ==
-            PackageManager.PERMISSION_GRANTED
+        mutableStateOf(ContextCompat.checkSelfPermission(context,
+            Manifest.permission.ACCESS_FINE_LOCATION) ==
+                PackageManager.PERMISSION_GRANTED
         )
     }
+
     GoogleMap(modifier = modifier.fillMaxSize(),
         cameraPositionState = camPosState,
         onMapClick = {
@@ -47,7 +49,6 @@ fun MapPage(
         },
         properties = MapProperties(isMyLocationEnabled = hasLocationPermission),
         uiSettings = MapUiSettings(myLocationButtonEnabled = true)
-
     ) {
         viewModel.cities.forEach {
             if (it.location != null){
@@ -81,3 +82,4 @@ fun MapPage(
         )
     }
 }
+
