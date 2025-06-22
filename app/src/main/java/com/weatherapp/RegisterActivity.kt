@@ -28,6 +28,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 import com.weatherapp.ui.theme.WeatherAppTheme
 
 class RegisterActivity : ComponentActivity() {
@@ -108,8 +110,18 @@ fun RegisterPage(modifier: Modifier = Modifier) {
             Button(
                 enabled = nome.isNotEmpty() && email.isNotEmpty() && senha.isNotEmpty() && repitSenha.isNotEmpty() && senha.equals(repitSenha),
                 onClick = {
-                    Toast.makeText(activity, "Registro OK!", Toast.LENGTH_LONG).show()
-                    activity?.finish()
+                    Firebase.auth.createUserWithEmailAndPassword(email, senha)
+                        .addOnCompleteListener(activity!!){ task ->
+                            if(task.isSuccessful) {
+                                Toast.makeText(activity,
+                                    "Registro OK!", Toast.LENGTH_LONG).show()
+                                activity.finish()
+                            }else{
+                                Toast.makeText(activity,
+                                    "Registro FALHOU!", Toast.LENGTH_LONG).show()
+                            }
+                    }
+
                 }
             ) { Text("Registrar") }
 

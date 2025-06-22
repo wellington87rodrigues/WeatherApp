@@ -33,6 +33,8 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 import com.weatherapp.ui.theme.WeatherAppTheme
 
 class LoginActivity : ComponentActivity() {
@@ -95,10 +97,19 @@ fun LoginPage(modifier: Modifier = Modifier) {
 
             Button(
                 onClick = {
-                    activity?.startActivity(
-                        Intent(activity, MainActivity::class.java).setFlags(FLAG_ACTIVITY_SINGLE_TOP)
-                    )
-                    Toast.makeText(activity, "Login OK!", Toast.LENGTH_LONG).show()
+                    Firebase.auth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(activity!!) { task ->
+                            if (task.isSuccessful) {
+                                activity.startActivity(
+                                    Intent(activity, MainActivity::class.java).setFlags(
+                                        FLAG_ACTIVITY_SINGLE_TOP
+                                    )
+                                )
+                                Toast.makeText(activity, "Login OK!", Toast.LENGTH_LONG).show()
+                            } else {
+                                Toast.makeText(activity, "Login FALHOU!", Toast.LENGTH_LONG).show()
+                            }
+                        }
                 }
             ) { Text("Login") }
 
