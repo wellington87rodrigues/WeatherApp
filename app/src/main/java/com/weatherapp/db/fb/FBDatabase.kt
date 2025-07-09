@@ -1,4 +1,4 @@
-package com.weatherapp.db
+package com.weatherapp.db.fb
 
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
