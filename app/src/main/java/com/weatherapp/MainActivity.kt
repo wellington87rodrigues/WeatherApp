@@ -65,7 +65,7 @@ class MainActivity : ComponentActivity() {
                     topBar = {
                         TopAppBar(
                             title = {
-                                val name = viewModel.user?:"[Não Logado]"
+                                val name = viewModel.user?.name?:"[Não Logado]"
                                 Text("Bem-vindo/a! $name") },
                             actions = {
                                 IconButton( onClick = { Firebase.auth.signOut() }
