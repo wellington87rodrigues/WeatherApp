@@ -1,4 +1,4 @@
-package com.weatherapp.ui
+package com.weatherapp.ui.theme
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement

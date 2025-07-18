@@ -71,7 +71,7 @@ class FBDatabase{
             throw RuntimeException("City with null or empty name!")
 
         val uid = auth.currentUser!!.uid
-        db.collection("Users").document(uid).collection("cities")
+        db.collection("users").document(uid).collection("cities")
             .document(city.name!!).set(city)
     }
 
@@ -82,7 +82,7 @@ class FBDatabase{
             throw RuntimeException("City with null or empty name!")
 
         val uid = auth.currentUser!!.uid
-        db.collection("Users").document(uid).collection("cities")
+        db.collection("users").document(uid).collection("cities")
             .document(city.name!!).delete()
     }
 }

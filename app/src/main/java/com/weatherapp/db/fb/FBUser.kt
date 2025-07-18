@@ -1,6 +1,6 @@
 package com.weatherapp.db.fb
 
-import com.weatherapp.ui.model.User
+import com.weatherapp.model.User
 
 class FBUser {
     var name : String ? = null
