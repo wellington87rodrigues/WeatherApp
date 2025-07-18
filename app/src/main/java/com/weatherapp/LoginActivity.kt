@@ -33,7 +33,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
-import com.weatherapp.ui.theme.RegisterActivity
 import com.weatherapp.ui.theme.WeatherAppTheme
 
 class LoginActivity : ComponentActivity() {

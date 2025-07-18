@@ -4,9 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.weatherapp.ui.theme.HomePage
-import com.weatherapp.ui.theme.ListPage
-import com.weatherapp.ui.theme.MapPage
+import com.weatherapp.ui.HomePage
+import com.weatherapp.ui.ListPage
+import com.weatherapp.ui.MapPage
 import com.weatherapp.model.MainViewModel
 
 @Composable

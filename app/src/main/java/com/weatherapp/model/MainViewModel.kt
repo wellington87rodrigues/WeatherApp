@@ -4,13 +4,16 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.google.android.gms.maps.model.LatLng
+import com.weatherapp.WeatherApp
+import com.weatherapp.api.WeatherService
 import com.weatherapp.db.fb.FBCity
 import com.weatherapp.db.fb.FBDatabase
 import com.weatherapp.db.fb.FBUser
 import com.weatherapp.db.fb.toFBCity
 
-class MainViewModel (private val db: FBDatabase) : ViewModel(),
-    FBDatabase.Listener{
+class MainViewModel(private val db: FBDatabase,
+                    private val service: WeatherService) :
+                    ViewModel(), FBDatabase.Listener{
 
     private val _cities = mutableStateListOf<City>()
     val cities
@@ -28,8 +31,21 @@ class MainViewModel (private val db: FBDatabase) : ViewModel(),
         db.remove(city.toFBCity())
     }
 
-    fun add(name: String, location: LatLng? = null) {
-        db.add(City(name = name, location = location).toFBCity())
+    fun add(name: String) {
+        service.getLocation(name){ lat, lng ->
+            if (lat != null && lng != null){
+                db.add(City(name = name, location = LatLng(lat, lng)).toFBCity())
+            }
+        }
+    }
+
+    fun add(location: LatLng) {
+        service.getName(location.latitude, location.longitude){ name ->
+            if (name != null){
+                db.add(City(name = name, location = location).toFBCity())
+            }
+
+        }
     }
 
     override fun onUserLoaded(user: FBUser) {

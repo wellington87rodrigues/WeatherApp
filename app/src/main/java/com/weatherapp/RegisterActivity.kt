@@ -1,4 +1,4 @@
-package com.weatherapp.ui.theme
+package com.weatherapp
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -33,6 +33,7 @@ import com.google.firebase.auth.auth
 import com.weatherapp.db.fb.FBDatabase
 import com.weatherapp.db.fb.toFBUser
 import com.weatherapp.model.User
+import com.weatherapp.ui.theme.WeatherAppTheme
 
 class RegisterActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

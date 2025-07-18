@@ -1,4 +1,4 @@
-package com.weatherapp.ui.theme
+package com.weatherapp.ui
 
 import android.annotation.SuppressLint
 import android.app.Activity
