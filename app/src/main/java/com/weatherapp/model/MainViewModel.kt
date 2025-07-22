@@ -64,7 +64,7 @@ class MainViewModel(private val db: FBDatabase,
             _user.value = user.toUser()
         }
         override fun onUserSignOut() {
-            TODO("Not yet implemented")
+            //TODO("Not yet implemented")
         }
         override fun onCityAdded(city: FBCity) {
             _cities[city.name!!] = city.toCity()
