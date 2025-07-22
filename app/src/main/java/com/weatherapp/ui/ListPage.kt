@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.weatherapp.model.City
 import com.weatherapp.model.MainViewModel
+import com.weatherapp.ui.nav.Route
 
 @SuppressLint("ContextCastToActivity")
 @Composable
@@ -56,7 +57,8 @@ fun ListPage(
 
             }, onClick = {
                 viewModel.city = city
-                Toast.makeText(activity, "Local Selecionado", Toast.LENGTH_LONG).show()
+                viewModel.page = Route.Home
+                //Toast.makeText(activity, "Local Selecionado", Toast.LENGTH_LONG).show()
             })
         }
     }
