@@ -25,6 +25,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -95,7 +96,8 @@ fun RegisterPage(modifier: Modifier = Modifier) {
             value = senha,
             label = { Text(text = "Digite sua senha") },
             modifier = modifier.fillMaxWidth(fraction = 0.9f),
-            onValueChange = { senha = it }
+            onValueChange = { senha = it },
+            visualTransformation = PasswordVisualTransformation()
         )
 
 
@@ -105,7 +107,8 @@ fun RegisterPage(modifier: Modifier = Modifier) {
             value = repitSenha,
             label = { Text(text = "Digite sua senha novamente") },
             modifier = modifier.fillMaxWidth(fraction = 0.9f),
-            onValueChange = { repitSenha = it }
+            onValueChange = { repitSenha = it },
+            visualTransformation = PasswordVisualTransformation()
         )
 
         Row(modifier = modifier) {

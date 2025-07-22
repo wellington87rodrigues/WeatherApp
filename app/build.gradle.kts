@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     id("org.jetbrains.kotlin.plugin.serialization") version "1.9.0"
     id ("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    // Add the dependency for the Google services Gradle plugin
     alias(libs.plugins.google.gms.google.services)
 }
 
@@ -25,7 +26,7 @@ android {
         val keyFile = project.rootProject.file("local.properties")
         val props = Properties()
         props.load(keyFile.inputStream())
-        buildConfigField("String", "WEATHER API KEY",
+        buildConfigField ("String", "WEATHER_API_KEY",
             props.getProperty("WEATHER_API_KEY"))
     }
 
