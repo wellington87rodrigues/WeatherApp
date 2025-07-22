@@ -55,6 +55,7 @@ fun ListPage(
                 Toast.makeText(activity, "Cidade Excluida", Toast.LENGTH_LONG).show()
 
             }, onClick = {
+                viewModel.city = city
                 Toast.makeText(activity, "Local Selecionado", Toast.LENGTH_LONG).show()
             })
         }
