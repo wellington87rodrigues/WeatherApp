@@ -20,6 +20,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -43,7 +44,12 @@ fun ListPage(
             .fillMaxSize()
             .padding(8.dp)
     ) {
-        items(cityList, key = {it.name}) { city ->
+        items(cityList/*, key = {it.name}*/) { city ->
+            LaunchedEffect(city.name){
+                if (city.weather == null){
+                    viewModel.loadWeather(city.name)
+                }
+            }
             CityItem(city = city, onClose = {
                 viewModel.remove(city)
                 Toast.makeText(activity, "Cidade Excluida", Toast.LENGTH_LONG).show()
@@ -80,7 +86,7 @@ fun CityItem(
                 text = city.name,
                 fontSize = 24.sp)
             Text(modifier = Modifier,
-                text = city.weather?:"Carregando clima...",
+                text = city.weather?.desc?:"Carregando clima...",
                 fontSize = 16.sp)
         }
         IconButton(onClick = onClose) {
